@@ -1,0 +1,142 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1.5in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,amsfonts}
+\usepackage{enumitem}
+
+\begin{document}
+
+\begin{center}
+    Where we are so far
+\end{center}
+
+Goal: Prove that if $a'$ and $b'$ are continuous and do not intersect themselves or each other, the loop will be self-intersecting, i.e. there exists $s_a, s_b,t$ such that $$\int_{s_a}^{s_a+t} a'(\sigma) d\sigma = \int_{s_b}^{s_b+t} b'(\sigma) d\sigma.$$ We will call these integrals $A(s_a,t)$ and $B(s_b,t)$.
+
+\bigskip
+
+\section{Things we have noticed (not attached to specific proofs)}
+
+\begin{enumerate}
+
+\item As you take these integrals with increasing t (and looking at all $s_a$ and $s_b$), you are averaging the loops and shrinking them down. If they cross at the same t, we have an intersection in the string.
+$A = a'$ at $t=0$ and $A=(0,0,0)$ at $t=L$.
+
+\item For any given great circle on the unit sphere, a' and b' both have some parts on each side
+
+There will always be at least 2 a' points and 2 b' points on any great circle.
+
+\item At times $t$ and $L-t$, $A$ is pointing in opposite directions.
+
+\item We can form an "intersection ring" on the unit sphere by plotting all points where $\frac{d\hat{A}}{dt} = \frac{d\hat{B}}{dt}$. Every point on this ring also has its antipodal point on the ring. (note: the ring is not necessarily a simple loop that goes around once; we could have multiple separate rings or a ring with self intersections, but for the baseball loops it is generally simple.)
+
+\item Along an intersection ring, $|A|$ and $|B|$ are continuous as we move. This means that if we show $|A| > |B|$ somewhere and $|A| < |B|$ somewhere else, we can conclude $|A| = |B|$ and thus intersection. For a non-selfintersecting loop, $|A| < |B|$ everywhere (or vice versa).
+
+\item If an a' goes around n times, it must have at least n-1 self-crossings on the unit sphere.
+
+\item Although $a'$ going around twice and $a'$ going around once but with a small extra loop are topologically equivalent, the first can lead to a non-selfintersecting loop but the second cannot (we think).
+
+\pagebreak
+
+\item A great circle is the "shortest" a' we can have, and should average in the "fastest" (i.e. any other design that goes around once has to have some parts with larger radii than the averaged circle at the same t).
+
+\item If there is a little loop in a', then when we average the loop gets smaller, then is a cusp (when we average over the entire length of the little loop), then it disappears.
+
+
+\item It is possible to have A entirely within B at a certain time (i.e., a' is three equidistant points in XY plane and b' is a great circle; A is entirely inside B at L/2 - however the two averages intersected earlier). So we can't just say that A will never be inside B, just that it can never be inside unless it has already intersected?
+\item Although we can say that a certain intersection point ($\hat{A} = \hat{B}$) "travels" on the unit sphere, neither t nor $s$ stay constant. This makes it difficult to actually "track" any given intersection point.
+
+\end{enumerate}
+
+\section{Proofs we have tried/thought about}
+
+\begin{enumerate}
+\item Triangles: Have a' and b' defined by three points each, in the planes of great circles. In our examples, the planes are perpendicular and if we look from the side, two points of each triangle are at the same horizontal position. Then, we can make a plot of horizontal distance of the average (x axis) vs t (y axis). For a single triangle, as we increase t from 0, initially we just see two lines moving upward (at the horizontal positions of the triangle points). Then, as t grows larger than the weights of the points, the lines curve inward and form a tent-like shape, ending at t=L with the lines converging to x=0. If the "tents" from the two triangles intersect before t=L, then there is an intersection because the averages are at the same value (using the symmetry of the situation).
+
+Could maybe expand this to more triangles by looking at a 3D version of the tents, but this does not seem easy to visualize.
+
+\item Planar curves: If a' and b' are both constrained to the x-y plane, A and B must intersect. We can show this by looking at the "weights" of A and B, defined as $\frac{d\sigma}{d\phi}$. The weights must sum up to $L$ for both, and we can show that the curves of the A weight and the B weight must cross each other. This means that, if you take averages with a small enough t, you can find one spot where all $w_A > w_B$ and another where all $w_A < w_B$. This means that $|A| > |B|$ in the first spot and $|A| < |B|$ in the second, so there must be an intersection.
+
+Hard to expand this to 3D a' and b' because there is not really a simple way to define "weight" in 3 dimensions. Could do it WRT a certain azimuthal angle? But how to set this angle ? Maybe net angular momentum of the intersection ring
+\end{enumerate}
+
+Next two both depend on the fact that the intersection ring is flat in the x-y plane and happens all at $t=L/2$. Then we define $\phi$ as the angle around the z axis. Also, we assume $b'(\phi)>a'(\phi)$ for all $\phi$ WRT x-y plane. So, $\frac{d\hat{A}}{dt} > \frac{d\hat{B}}{dt}$ at $L/2$ for every point because $b' > a'$ before $L/2$ and $b' < a'$ after.
+
+\begin{enumerate}[resume]
+\item Find the location on the ring where $\frac{d\hat{A}}{dt}$ is maximized. This has an $a'(s_a+t)$ associated with it, call this angle $\phi_1$. Then, $b'(\phi_1) > a'(\phi_1) \implies \frac{d\hat{B}}{dt} > \frac{d\hat{A}}{dt}_{max}$. But then we also know that at the B point, there is a $\frac{dA_2}{dt} > \frac{dB}{dt}$. So if $|A| < |B|$ we get $\frac{d\hat{A}_2}{dt} > \frac{d\hat{A}}{dt}_{max}$, which is a contradiction. Similar reasoning can eliminate $|A| > |B|$ elsewhere. Taking these two together along with the fact that $|A|$ and $|B|$ are continuous on the ring means we must have a spot where $|A|=|B|$.
+
+We can't get it to work with a non-planar intersection ring because we can no longer say that there is a $b'(\phi)$ greater than the greatest $a'(\phi)$. "Greater" is defined relative to the tangent great circle at a given point, and since we do not know much about restraints on this tangent, we cannot say for sure that there is a b' above every a' as we go around.
+
+\item The basic idea is that $b_z > a_z > 0 \implies |A| < |B|$ and $0 > b_z > a_z \implies |A| > |B|$. Find a location on the ring (keeping A and B at the same point) where $a'(s_a+t)>0$ and $b'(s_b+t)>0$. Then, as we move the AB point around, a' and b' will become negative. However, we cannot have $b_z > 0 > a_z$ because we know that $\frac{d\hat{A}}{dt} > \frac{d\hat{B}}{dt}$ at every point on the ring. Thus $b_z$ becomes negative first, and $a_z$ follows. Then, once they are negative, $a_z$ must become positive first for the same reason. At the start, the path of $a'$ is to the "left" (need to define this topologically) of the path of $b'$, and at the end it is to the right. Since they never cross, there must be a spot in between where $a'$ and $b'$ are lined up (this is still a bit vague).
+
+When we try to expand to a non-planar intersection ring, we have trouble because the tangent circle can move, which means that if a' and b' become negative, then the tangent circle could "sweep over" both of them before a' actually goes below b', making them positive again.
+\end{enumerate}
+
+Ideas for dealing with non-planar intersection ring:
+
+\begin{itemize}
+\item Contains antipodal points, meaning that the "slope" on the opposite side will be the negative of the slope on the side we are looking at (when we project onto 2d space).
+\item Still only need to show $|A| < |B|$ and $|A| > |B|$
+\item If $(b' - a') \times T$ (tangent vector) points outward (when placed at point AB), then $(b' - a')$ points "up" relative to the tangent vector?
+\item If we pick our axis such that there is a "vertical" section of the intersection ring (i.e. the ring goes over multiple $z$ values for the same $\phi$ value), then the tangent circle goes from vertical one way to vertical the other way when it is halfway around the ring. Since $a'(s)$ and $a'(s+t)$ are always at the same z as each other (relative to the ring), this means they are moving pretty wildly. Maybe we can show something here?
+\item Maybe we could shift into the perspective where the tangent circle is constant? Then, as we move around, the points a'(s+t) and b'(s+t) trace out new curves. What do we know about these curves?
+\end{itemize}
+
+\section{General ideas we have not looked at in-depth}
+
+\begin{enumerate}
+\item Can we show that $|B| < c < |A|$ for all s?
+
+Does not seem to be a very helpful idea b/c not all need to obey this
+
+\item Identical a' and b': it seems that we could pretty easily show that identical a' and b' (where b' is a translation/reflection of a') will always intersect. Would this have any use?
+
+\item Expanding to intersection rings that do not happen all at one t: $|A|$ and $|B|$ would still be continuous around the ring (it seems), so we would still just need to show that $|A| < |B|$ somewhere and $|A| > |B|$ somewhere else.
+
+Can we still say $d\hat{A}/dt > d\hat{B}/dt$, as we did for the ring with only one t? I think so, although we need to be careful with how "greater" is defined.
+
+\item If we start by assuming (towards contradiction) that $|A| > |B|$ everywhere, this means that at point of minimum separation between $|A|$ and $|B|$, we have $\frac{d(|A| -|B|)}{ds} = 0$ but $|A| > |B|$. Maybe there is some sort of contradiction we can find here?
+
+$\frac{d(|A| -|B|)}{ds} = 0 \implies \frac{d|A|}{ds}=\frac{d|B|}{ds} \implies \frac{d|A|}{d\phi} \frac{d\phi}{d s_a} = \frac{d|B|}{d\phi} \frac{d\phi}{d s_b}$
+
+\item If we plot every position of A across all $s_a$ and all t, it forms a surface. Do the same for B. Then, these curves must intersect (so at this intersection, we already know A = B). Then we just need to show that one of these intersection places has the same t.
+
+Seems that $s_a, s_b, t$ would be continuous along the surfaces, so if we show there is a greater t and a smaller t on this continuous curve then we should be good.
+
+\item Topologically, a' going around twice (slightly perturbed) is the same as a' going around once but with a little loop added on. Both require a cusp to smooth out into a non-selfintersecting a'. But there must be some difference here, because going around twice can be done with no intersections, but (as far as we know) just making a little loop doesn't really help you.
+
+Is there a hard boundary? Well, whether or not it intersects also depends on the b' curve, so maybe not. But there must be a boundary between things that can never intersect, regardless of b', and things that could intersect if given the correct b'.
+
+Even if a' goes around twice, if the second time around moves very quickly (low weight) then it will still intersect; size of extra loop is less important than the amount of sigma.
+
+\item For $|A| < |B|$, we must have more a' concentrated around the poles/back of sphere (to pull average in). But then when we move around a', these more concentrated parts become the centers of other parts. So it seems obvious that we cannot always have $|A| < |B|$. Maybe we can get more specific?
+
+If there is a certain $\phi$ such that $|A| < |B|$, and the average of the "left-out" parts of a' and b' also have $|A| < |B|$, then seems like there should be an issue because this would generally mean that A has more weight on the endpoints of its interval, but then halfway around we should have $|A| > |B|$. It's a bit more complicated that this because B is also varying, but something like this could lead somewhere.
+
+\item If we take A and B with a small t, for every point on A and B we can draw a small circle on the unit sphere (the center of the circle is the point itself). Then we know that some a' must have gone through each A circle and similar for B. Thus, if we draw the circles for all $s_a$ and $s_b$, if the paths of circles cross then A and B must have crossed. Anything we can do with this?
+
+\item There are 3 ways to look at density: sigma per unit length ($\frac{d\sigma}{dl}$), sigma per unit area ($\frac{d\sigma}{da}$), and angular distribution of sigma ($\frac{d\sigma}{d\phi}$). All three have their issues. Have not looked at area one in depth yet, is there anything promising there?
+
+\item As we go around the loops (with a given $\phi$), there must be one spot where $\phi_a(s_a) = \phi_b(s_b) \wedge \phi_a(s_a + t) = \phi_b(s_b + t)$ for every t (if they go around once monotonically; we can prove this with weights). If we have $b' > a'$, then we know that $\frac{dB}{dt} > \frac{dA}{dt}$. Does the other endpoint tell us anything?
+
+\item We can make intersection rings "look like" they happen at the same time by replacing t with $\tau$, a variable with range [-1,1] defined such that $\tau_{t=0}=-1, \tau_{t=L}=1,$ and the intersection ring all happens at $\tau = 0$.
+
+Could also define a new sigma such that $\hat{A} = \hat{B} \implies \sigma_a = \sigma_b$ so that as we "go around" $A$ and $B$ we move at the same speed. I guess this would be similar to defining a $\phi$ around the intersection ring, so maybe it isn't any more useful than that.
+
+\item At t=0, we have all $r_a = r_b = 1$. At t = L/2, we have all associated $r_a < r_b$ ("associated" means that they point in the same direction). So there is some point near t = L/2 where the last $r_a = r_b$ and then after that, all $r_a < r_b$. Tricky part of this is tracking "associated" r's. If we use the previous idea and define a sigma such that all associated $r_a$ and $r_b$ have the same s, maybe we can do something here? 
+
+\item What does it mean when $r_a < r_b$ everywhere? Means that all those A's shrank faster than the B's previously, which means the "average" shrinking rate for A is faster (average $d|A|/dt$ has larger magnitude). Seems like this can't be the case everywhere.
+
+Integral of components of a' in the direction of $\hat{A}$ must be smaller.
+
+If this holds for $r_1$, it will also hold for -$r_1$ (with t and L-t)? Then maybe we can find something in between that breaks.
+
+Where it breaks is not necessarily $r_{\bot}$, though.
+
+\item Look at weights by component: for any given t, as we move around, the integral of the x components of a' will shrink and grow. There will always be a place where the integral is 0 (for components in any direction) because A is split between any two hemispheres. So, for any t, we can find a place where A and B component averages are both equal to 0. We do this for x. Next, across the range of t, it seems like there should be a spot where the y components are equal as well. Then this just leaves z as the free variable. How to show that z can be equal?
+
+For any given component, for a specific t there is a max and min value. In between, it is continuous so we can get any value we want.
+
+Applying to baseball loop: Find a spot where z average is 0. Then, we can go along in t looking at x. When x are equal (at L/2) how do we show that 
+\end{enumerate}
+
+
+\end{document}
